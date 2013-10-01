@@ -13,7 +13,7 @@ class dev-packages {
     include gcc
     include wget
 
-    $devPackages = [ "nano", "curl", "git", "mercurial", "nodejs", "npm", "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby" ]
+    $devPackages = [ "nano", "curl", "git", "mercurial", "nodejs", "npm"/*, "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby"*/ ]
     package { $devPackages:
         ensure => "installed",
         require => Exec['apt-get update'],
@@ -24,20 +24,20 @@ class dev-packages {
         require => Package["npm"],
     }
 
-    exec { 'install capifony using RubyGems':
-        command => 'gem install capifony',
-        require => Package["rubygems"],
-    }
+#    exec { 'install capifony using RubyGems':
+#        command => 'gem install capifony',
+#        require => Package["rubygems"],
+#    }
 
-    exec { 'install sass with compass using RubyGems':
-        command => 'gem install compass',
-        require => Package["rubygems"],
-    }
+#    exec { 'install sass with compass using RubyGems':
+#        command => 'gem install compass',
+#        require => Package["rubygems"],
+#    }
 
-    exec { 'install capistrano_rsync_with_remote_cache using RubyGems':
-        command => 'gem install capistrano_rsync_with_remote_cache',
-        require => Package["capistrano"],
-    }
+#    exec { 'install capistrano_rsync_with_remote_cache using RubyGems':
+#        command => 'gem install capistrano_rsync_with_remote_cache',
+#        require => Package["capistrano"],
+#    }
 }
 
 class nginx-setup {
