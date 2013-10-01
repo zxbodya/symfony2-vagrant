@@ -13,7 +13,7 @@ class dev-packages {
     include gcc
     include wget
 
-    $devPackages = [ "vim", "curl", "git", "nodejs", "npm", "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby" ]
+    $devPackages = [ "nano", "curl", "git", "mercurial", "nodejs", "npm", "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby" ]
     package { $devPackages:
         ensure => "installed",
         require => Exec['apt-get update'],
@@ -41,7 +41,7 @@ class dev-packages {
 }
 
 class nginx-setup {
-    
+
     include nginx
 
     package { "python-software-properties":
@@ -92,11 +92,6 @@ class php-setup {
         require => Exec['add-apt-repository ppa:ondrej/php5'],
     }
 
-    package { "mongodb":
-        ensure => present,
-        require => Package[$php],
-    }
-
     package { $php:
         notify => Service['php5-fpm'],
         ensure => latest,
@@ -121,15 +116,6 @@ class php-setup {
     package { "phpmyadmin":
         ensure => present,
         require => Package[$php],
-    }
-
-    exec { 'pecl install mongo':
-        notify => Service["php5-fpm"],
-        command => '/usr/bin/pecl install --force mongo',
-        logoutput => "on_failure",
-        require => Package[$php],
-        before => [File['/etc/php5/cli/php.ini'], File['/etc/php5/fpm/php.ini'], File['/etc/php5/fpm/php-fpm.conf'], File['/etc/php5/fpm/pool.d/www.conf']],
-        unless => "/usr/bin/php -m | grep mongo",
     }
 
     file { '/etc/php5/cli/php.ini':
@@ -175,11 +161,6 @@ class php-setup {
         ensure => running,
         require => Package["php5-fpm"],
     }
-
-    service { "mongodb":
-        ensure => running,
-        require => Package["mongodb"],
-    }
 }
 
 class composer {
@@ -212,6 +193,5 @@ include dev-packages
 include nginx-setup
 include php-setup
 include composer
-include phpqatools
-include memcached
-include redis
+#include phpqatools
+#include memcached
