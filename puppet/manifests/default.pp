@@ -53,7 +53,7 @@ class nginx-setup {
         group  => root,
         ensure => file,
         mode   => 644,
-        source => '/vagrant/files/nginx/default',
+        source => '/vagrant/vagrant/files/nginx/default',
         require => Package["nginx"],
     }
 
@@ -137,7 +137,7 @@ class php-setup {
         group  => root,
         ensure => file,
         mode   => 644,
-        source => '/vagrant/files/php/cli/php.ini',
+        source => '/vagrant/vagrant/files/php/cli/php.ini',
         require => Package[$php],
     }
 
@@ -147,7 +147,7 @@ class php-setup {
         group  => root,
         ensure => file,
         mode   => 644,
-        source => '/vagrant/files/php/fpm/php.ini',
+        source => '/vagrant/vagrant/files/php/fpm/php.ini',
         require => Package[$php],
     }
 
@@ -157,7 +157,7 @@ class php-setup {
         group  => root,
         ensure => file,
         mode   => 644,
-        source => '/vagrant/files/php/fpm/php-fpm.conf',
+        source => '/vagrant/vagrant/files/php/fpm/php-fpm.conf',
         require => Package[$php],
     }
 
@@ -167,7 +167,7 @@ class php-setup {
         group  => root,
         ensure => file,
         mode   => 644,
-        source => '/vagrant/files/php/fpm/pool.d/www.conf',
+        source => '/vagrant/vagrant/files/php/fpm/pool.d/www.conf',
         require => Package[$php],
     }
 
