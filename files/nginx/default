@@ -1,5 +1,4 @@
 server {
-  sendfile off;
   listen 80;
 
   server_name localhost;
