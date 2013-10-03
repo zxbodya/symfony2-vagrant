@@ -13,7 +13,7 @@ class dev-packages {
     include gcc
     include wget
 
-    $devPackages = [ "nano", "curl", "git", "mercurial", "nodejs", "npm"/*, "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby"*/ ]
+    $devPackages = [ "nano", "curl", "git", "mercurial", "nodejs", "npm", "zip"/*, "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby"*/ ]
     package { $devPackages:
         ensure => "installed",
         require => Exec['apt-get update'],
